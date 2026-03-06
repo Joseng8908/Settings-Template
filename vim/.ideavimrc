@@ -1,0 +1,21 @@
+" --- 기본 설정 --- "
+set scrolloff=5
+set incsearch
+map Q gq
+
+" --- IdeaVim 플러그인 --- "
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+
+" --- 입력 모드 탈출 --- "
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+" --- 커서 이동 허용 --- "
+set whichwrap-=h
+set whichwrap-=l
+
+" --- 매핑 설정 --- "
+nnoremap X :bd<CR>
+nnoremap H gT
+nnoremap L gt
