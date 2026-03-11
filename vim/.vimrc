@@ -34,3 +34,41 @@ set whichwrap-=l
 
 inoremap jk <Esc>   "jk, kj 누르면 모드 변환"
 inoremap kj <Esc>
+
+" ========================== "
+" --- 1. 기본 편집 및 들여쓰기 설정 ---
+set number              " 줄 번호 표시
+set autoindent          " 자동 들여쓰기
+set smartindent         " 문법에 맞게 스마트한 들여쓰기
+set tabstop=4           " Tab 크기를 4칸으로
+set shiftwidth=4        " 자동 들여쓰기 시 4칸 이동
+set expandtab           " Tab을 공백으로 변환
+set cursorline          " 현재 커서 줄 강조
+set hlsearch            " 검색 결과 하이라이트
+
+" --- 2. 줄 끝/처음에서 좌우(h, l) 이동 시 줄 바꿈 허용 ---
+set whichwrap+=<,>,h,l,[,]
+
+" --- 3. 단축키 매핑 (Insert 모드 탈출) ---
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+" --- 4. 괄호 자동 완성 및 엔터 처리 ---
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap " ""<left>
+inoremap ' ''<left>
+
+" 괄호 열고 엔터 시 줄 바꿈 및 들여쓰기
+inoremap {<CR> {<CR>}<Esc>O
+inoremap [<CR> [<CR>]<Esc>O
+inoremap (<CR> (<CR>)<Esc>O
+
+" --- 5. 이미 닫는 괄호가 있으면 입력 대신 '커서 이동' ---
+" 입력하려는 문자가 바로 다음 문자와 같으면 한 칸 옆으로 이동합니다.
+inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\""
+inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "'" ? "\<Right>" : "'"
