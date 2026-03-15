@@ -224,3 +224,32 @@ public class WebConfig implements WebMvcConfigurer {
     }
 }
 ```
+
+## intellij 로 시작하기
+1. New Project를 누른 뒤 시작
+- Name: 프로젝트 이름
+- Type: Gradle - Kotlin or Groovy
+- Lang: Java
+- JDK: 17이상
+
+2. project 만들어지면
+- 디렉토리 정리
+```
+src/main/java/com/delivery: 메인 로직이 들어가는 곳.
+
+controller/: 외부 요청을 받는 창구
+
+service/: 비즈니스 로직(요리)
+
+repository/: DB와 소통하는 곳
+
+config/: 아까 말한 중앙 통제실
+
+src/main/resources/: 설정 파일(application-local.yml)이 들어가는 곳.
+
+src/test/java/: AI가 짠 코드를 검증할 테스트 코드.
+```
+
+3. Entry Point: `src/main/java/com/delivery/DeliveryApplication.java`
+
+
