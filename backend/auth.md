@@ -34,4 +34,31 @@ public class SecurityConfig {
     2. API 호출, 이후 모든 요청에 이 토큰을 헤더에 담아서 보내기
     3. 토큰을 보고 위조 여부를 확인 후 서비스 로직 실행
 
+## 로그인 인증과정과, 책임 분담
+```
+단계,책임자,내용
+1. 요청 전송,프론트엔드,로그인 폼 구성 및 데이터 전송
+2. 필터 검문,Spring Security,요청을 가로채고 인증 처리 준비 (Filter 체인)
+3. 신원 확인,개발자 (당신),DB에서 회원 정보 조회 및 비밀번호 매칭 로직
+4. 신분증 발급,개발자 (당신),JWT 생성 및 암호화 알고리즘 선택
+5. 응답 전달,Spring & 개발자,DTO 구성 및 JSON 변환/전송
+```
+
+## 롬복을 이용한 DTO 예시
+```
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Getter // 모든 필드의 Getter를 자동으로 생성
+@Setter // 모든 필드의 Setter를 자동으로 생성
+@NoArgsConstructor // 파라미터가 없는 기본 생성자 생성
+@AllArgsConstructor // 모든 필드를 포함한 생성자 생성
+public class LoginRequest {
     
+    private String email;
+    private String password;
+    
+}
+```
