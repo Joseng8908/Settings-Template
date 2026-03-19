@@ -8,7 +8,6 @@ set clipboard=unnamed   " 시스템 클립보드와 연동
 " --- 편집 설정 --- "
 set ts=4                " tabstop: 탭 너비 4
 set sw=4                " shiftwidth: 들여쓰기 너비 4
-set expandtab           " 탭을 공백으로 변환
 set autoindent          " 자동 들여쓰기
 set cindent             " C 언어 스타일 들여쓰기
 
