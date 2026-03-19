@@ -1,0 +1,53 @@
+1. 쉘 환경 (The Foundation)
+터미널의 뼈대를 Bash에서 훨씬 강력하고 예쁜 Zsh로 교체했습니다.
+
+Zsh: 리눅스용 기본 쉘. (설치: sudo apt install zsh)
+
+Oh My Zsh: Zsh를 쉽게 관리해주는 프레임워크. (설치: curl 이용)
+
+2. 외형 & 감성 도구 (The Aesthetics)
+터미널을 켰을 때 "오..." 소리가 나오게 만드는 시각적 요소들입니다.
+
+Fastfetch: 시스템 정보와 로고를 간지나게 띄워주는 도구. (설치: ppa:zhangsongcui3371/fastfetch)
+
+LSD (ls deluxe): ls 명령어를 치면 파일 옆에 아이콘(📁, 🐍 등)을 붙여주는 도구. (설치: sudo apt install lsd)
+
+Powerlevel10k: 터미널 하단 프롬프트를 사선(///) 모양과 무지개색으로 꾸며주는 테마. (설치: git clone 후 p10k configure)
+
+3. 생산성 플러그인 (The Power-ups)
+단순히 예쁜 걸 넘어 작업 속도를 미치게 만들어주는 기능들입니다.
+
+zsh-autosuggestions: 예전에 쳤던 명령어를 회색 글자로 미리 보여주는 기능. (→ 키로 자동 완성)
+
+zsh-syntax-highlighting: 명령어가 맞으면 초록색, 틀리면 빨간색으로 실시간 색칠해주는 기능.
+
+4. 에디터 튜닝 (The Core)
+코드 편집기인 **LunarVim(lvim)**을 터미널 투명도와 맞췄습니다.
+
+Transparent.nvim: lvim의 검은 배경을 뚫어서 터미널 투명도가 보이게 만드는 플러그인.
+
+NvimTree 투명화: Space + e를 눌렀을 때 나오는 왼쪽 파일 목록까지 투명하게 커스텀 설정.
+
+5. 윈도우 터미널 설정 (The Frame)
+윈도우 자체 설정을 건드려 "창" 자체를 예술로 만들었습니다.
+
+Mica / Acrylic 효과: 창 배경을 반투명하게 만듦.
+
+Focus Mode (포커스 모드): 상단바, 탭, 테두리를 싹 없애고 화면만 남김.
+
+Quake Mode (쿼이크 모드): Win + ~ 키로 터미널을 위에서 슥 내리는 기능.
+
+Launch Mode "focus": 터미널을 켜자마자 포커스 모드로 자동 시작하게 설정.
+
+💡 잊지 말아야 할 파일 경로들
+설정을 수정하고 싶을 때 들어가는 곳입니다.
+
+Zsh 설정: nano ~/.zshrc (플러그인, 별칭(alias) 등)
+
+p10k 상세 설정: nano ~/.p10k.zsh (사선 색깔, 아이콘 등)
+
+LunarVim 설정: lvim ~/.config/lvim/config.lua (에디터 투명도 등)
+
+윈도우 터미널 설정: Ctrl + Shift + , (JSON 파일)
+
+폰트: GoNerdfont_mono

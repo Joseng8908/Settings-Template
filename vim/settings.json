@@ -1,0 +1,107 @@
+wsl json
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [],
+    "alwaysShowTabs": false,
+    "compatibility.enableUnfocusedAcrylic": true,
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{459c4645-82c5-583c-8f6a-c772a017695f}",
+    "initialCols": 120,
+    "initialRows": 30,
+    "keybindings": 
+    [
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
+        },
+        {
+            "id": "Terminal.DuplicatePaneAuto",
+            "keys": "alt+shift+d"
+        },
+        {
+            "id": "Terminal.QuakeMode",
+            "keys": "win+`"
+        }
+    ],
+    "language": "ko",
+    "launchMode": "focus",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "colorScheme": "One Half Dark",
+            "cursorShape": "filledBox",
+            "font": 
+            {
+                "face": "GoMono Nerd Font Mono"
+            },
+            "opacity": 60,
+            "useAcrylic": true
+        },
+        "list": 
+        [
+            {
+                "antialiasingMode": "grayscale",
+                "colorScheme": "One Half Dark",
+                "font": 
+                {
+                    "face": "GoMono Nerd Font Mono",
+                    "size": 10
+                },
+                "guid": "{459c4645-82c5-583c-8f6a-c772a017695f}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "opacity": 80,
+                "source": "Microsoft.WSL",
+                "useAcrylic": false
+            },
+            {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "name": "Windows PowerShell"
+            },
+            {
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "name": "Command Prompt"
+            }
+        ]
+    },
+    "schemes": [],
+    "showTabsInTitlebar": true,
+    "theme": "system",
+    "themes": 
+    [
+        {
+            "name": "MicaDark",
+            "tabRow": 
+            {
+                "background": null,
+                "unfocusedBackground": null
+            },
+            "window": 
+            {
+                "applicationTheme": "dark",
+                "experimental.rainbowFrame": false,
+                "frame": null,
+                "unfocusedFrame": null,
+                "useMica": true
+            }
+        }
+    ],
+    "useAcrylicInTabRow": true
+}
