@@ -13,12 +13,16 @@
 
 ```
 micro-docker/
-    - main.go //프로그램 진입점
-    - container/
-        - container.go // 새로운 컨테이너 생성 로직 및 실행 로직
-        - run.go // Namespace 설정 및 프로세스 실행 로직
-    - monitor/
-        - monitor.go // 프로세스 상태 확인 및 자원 정리
+    - cmd/
+        - conatiner/
+            - main.go # 프로그램 진입점
+    - internal/
+        - cgroups/
+            - cgroups.go
+        - container/
+            - config.go # 컨테이너 관련 객체 선언
+            - cotainer.go # 컨테이너 실행 명령어들, 그에 대한 환경설정 자동 세팅 메소드
+            - run.go # 컨테이너 구동
 ```
 
 ## Code
