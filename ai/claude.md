@@ -105,6 +105,23 @@ test: add table-driven tests for auth handler
 
 ---
 
+## Development Flow (Backend Only)
+
+**구현 시작 전 반드시 이 순서. 1, 2 없으면 Claude는 구현 시작하지 말 것.**
+
+```
+1. API Spec       엔드포인트, 요청/응답, 에러코드 정의
+2. Data Model     DB 스키마 + 도메인 객체 정의 (PostgreSQL migration 포함)
+3. Test           실패하는 테스트 먼저 작성 (TDD)
+4. Implement      테스트 통과하도록 구현
+5. Lint           gofmt / golangci-lint (hook 자동 실행)
+6. Commit         Conventional Commits
+```
+
+스키마는 한번 박히면 바꾸기 힘들다. 2번을 가장 신중하게.
+
+---
+
 ## Testing (TDD)
 
 **Test first. Always. No exceptions.**
