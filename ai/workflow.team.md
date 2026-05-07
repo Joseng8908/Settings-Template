@@ -2,6 +2,7 @@
 
 > 해커톤 / 팀 프로젝트 개발 워크플로우
 > CLAUDE.team.md 와 함께 사용
+> 이 파일은 본인이 참고하는 가이드 — Claude한테 주는 파일 아님
 > 시간이 없다 — 설계에 30%, 구현에 70%
 
 ---
@@ -11,14 +12,17 @@
 ### Step 1. repo 세팅
 ```
 [팀장] GitHub repo 생성
-       CLAUDE.team.md → repo 루트에 커밋
+       CLAUDE.md (team + project 합본) → repo 루트에 커밋
        .gitignore에 .claude.local.md 추가
        branch protection: main 직접 push 금지
 
 [팀원 전체] clone + 각자 환경 세팅
             cp .claude.local.md.example .claude.local.md
-            (개인 IDE, 단축키, 선호 설정 등)
 ```
+
+> CLAUDE.md 합본 만드는 법:
+> cat CLAUDE.team.md CLAUDE.project-example.md > CLAUDE.md
+> Phase 1 끝난 후 project 부분 채워서 커밋
 
 ### Step 2. 도메인 소유권 배분
 ```
@@ -26,9 +30,9 @@
           Auth    → @팀원A
           User    → @팀원B
           Post    → @팀원C
-          Infra   → @팀원D  (가장 인프라 잘 아는 사람)
+          Infra   → @팀원D  (인프라 담당)
 
-[팀장] CLAUDE.team.md의 Domain Ownership 섹션 채우기
+[팀장] CLAUDE.md의 Domain Ownership 섹션 채우기
        커밋: chore: assign domain ownership
 ```
 
@@ -63,22 +67,25 @@
           feat(docs): add DB schema and initial migration
 ```
 
-> Phase 1 완료 선언 후 병렬 구현 시작
+> Phase 1 완료 후:
+> CLAUDE.md project 부분 채우기 (팀장)
+> 현재 세션 블록은 비워둔 채로 커밋
 > 이후 api-spec.md / schema.md 변경은 팀 동의 필수
 
 ---
 
 ## Phase 2 — 병렬 구현 (도메인별 독립)
 
-### Step 5. 각자 브랜치 생성
+### Step 5. 각자 세션 시작
 ```
 [팀원 각자]
 git checkout -b feature/{domain}/initial-setup
 
-각자의 Claude Code 세션 시작:
-  tmux new-session -s {domain}
-  claude
-  → CLAUDE.team.md + 본인 도메인 컨텍스트 붙여넣기
+tmux new-session -s {domain}
+claude
+
+# CLAUDE.md (합본) 붙여넣기 — 현재 세션 블록은 비워둔 채
+# Claude한테: "현재 세션 블록 채워줘, {domain} 도메인 시작하자"
 ```
 
 ### Step 6. 도메인 구현 (각자 진행)
@@ -88,7 +95,7 @@ git checkout -b feature/{domain}/initial-setup
 1. 테스트 먼저 작성 (TDD)
 2. 구현
 3. lint 자동 실행 (PostToolUse hook)
-4. 커밋
+4. 커밋 + 현재 세션 블록 업데이트
 
 커밋 단위: 기능 하나 완성될 때마다
 feat(auth): add login endpoint
@@ -110,8 +117,7 @@ fix(auth): correct token expiry handling
        제목: feat(auth): implement login/logout/refresh
 
 [도메인 오너 or 팀장] 리뷰
-  Claude 활용:
-  "이 PR 코드 리뷰해줘. CLAUDE.team.md 컨벤션 기준으로"
+  Claude 활용: "이 PR 코드 리뷰해줘. CLAUDE.md 컨벤션 기준으로"
 
 [팀원] 수정 → merge
 ```
@@ -153,6 +159,33 @@ Claude 활용: "이 에러 원인 찾아줘" (디버깅)
 
 ---
 
+## 컨텍스트 관리 (/clear) — 팀원 각자
+
+### /clear가 필요한 증상
+```
+- 아까 정한 컨벤션 무시하기 시작
+- 이미 만든 함수 또 만들려고 함
+- 타 도메인 파일 건드리기 시작
+- 응답이 느려지거나 횡설수설
+```
+
+### /clear 루틴
+```
+# 1. /clear 전
+[나] "CLAUDE.md 현재 세션 블록 업데이트해줘"
+[Claude] 현재 도메인, 단계, 브랜치, 다음 작업 반영
+
+# 2. /clear 실행
+/clear
+
+# 3. 재시작
+[나] 업데이트된 CLAUDE.md 붙여넣기
+[나] "계속 진행하자"
+[Claude] 컨텍스트 파악 후 재개
+```
+
+---
+
 ## 팀 Claude 사용 규칙
 
 ```
@@ -171,7 +204,8 @@ Claude 활용: "이 에러 원인 찾아줘" (디버깅)
 
 ```
 repo-root/
-├─ CLAUDE.md              ← CLAUDE.team.md 내용 (팀 공유)
+├─ CLAUDE.md              ← CLAUDE.team.md + project-example.md 합본
+│                            (cat CLAUDE.team.md CLAUDE.project-example.md > CLAUDE.md)
 ├─ .claude.local.md       ← 개인 설정 (gitignore)
 ├─ docs/
 │   ├─ api-spec.md        ← Phase 1 산출물 (불변)
@@ -180,6 +214,12 @@ repo-root/
     ├─ auth/              ← @팀원A
     ├─ user/              ← @팀원B
     └─ post/              ← @팀원C
+
+홈서버:
+~/.claude/CLAUDE.md       ← 전역 규칙 (Claude Code 자동 로드)
+~/dev-docs/
+    ├─ workflow.solo.md   ← 본인 참고용
+    └─ workflow.team.md   ← 본인 참고용
 ```
 
 ---
@@ -190,6 +230,7 @@ repo-root/
 시간 없으면 이것만 지키자:
   ✅ Phase 1 (설계) 반드시 끝내고 구현 시작
   ✅ 도메인 소유권 명확히
+  ✅ CLAUDE.md 합본 Phase 1 후 바로 커밋
   ✅ main 직접 push 금지
   ✅ secrets 코드에 박지 말기
 
