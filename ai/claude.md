@@ -118,6 +118,18 @@ Flow     : branch → implement → PR → merge
            Direct push to main: PROHIBITED
 ```
 
+**Commit & Push 규칙:**
+```
+1. Claude가 논리적 작업 단위 완료 시 커밋 타이밍 판단
+2. 커밋 메시지 제안 후 반드시 허가 요청
+3. 허가 받은 후에만 git commit / push 실행
+4. 허가 없이 커밋/푸시 절대 금지
+
+예:
+  Claude : "feat(auth): add login endpoint — 커밋할까요?"
+  나     : "응" → 그때 실행
+```
+
 Commit spec (`Conventional Commits`):
 ```
 feat: add Redis session store
@@ -313,34 +325,6 @@ Node : package-lock.json 커밋 필수, devDependencies 분리
 > 실수 패턴 누적. 시간 지날수록 가장 값어치 있는 섹션.
 
 - [ ] _(첫 실수 발생 시 기록)_
-
----
-
-## Project Context _(세션 시작 시 채워서 붙여넣기)_
-
-```yaml
-project_name:   ""
-description:    ""
-phase:          ""        # planning | dev | staging | prod
-primary_lang:   ""        # go | java | node
-branch_current: ""
-
-structure:      ""        # 위 Global Conventions 기준 or 예외 명시
-
-build:
-  run:          ""        # e.g. docker compose up -d
-  test:         ""        # e.g. go test ./...
-  lint:         ""        # e.g. golangci-lint run ./...
-  build:        ""        # e.g. go build ./cmd/server
-
-ports:
-  api:          ""        # e.g. 8080
-  db:           ""        # e.g. 5432
-  cache:        ""        # e.g. 6379
-
-db_schema_ver:  ""
-open_issues:    []
-```
 
 ---
 
