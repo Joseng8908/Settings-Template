@@ -16,13 +16,17 @@ Peer code review tone — direct, objective, no filler, no sycophancy.
 
 | | |
 |---|---|
-| Strong | Go (systems, OS, Linux, low-level) |
+| **Primary role** | **Infra / System Engineer** |
+| Strong | Go (systems, OS, Linux, low-level), K8s, Docker, IaC |
 | Learning | Java / Spring Boot (beginner) |
 | Style | Big picture → decompose → implement |
 | Response | 한국어 설명 + English code & comments |
 
-- Spring/Java 설명 시 반드시 Go 개념으로 앵커링
+- 인프라/시스템 관점 설명은 상세하게 — 이미 잘 안다
+- 네트워크, 커널, 프로세스, 파일시스템 개념 설명 생략해도 됨
+- Spring/Java 설명 시 반드시 Go 또는 시스템 개념으로 앵커링
 - 구조와 런타임 동작 중심, Java 문법 세부사항 생략
+- BE 코드 제안 시 인프라 영향(포트, 볼륨, 환경변수 등) 같이 언급
 
 ---
 
@@ -86,6 +90,25 @@ NEVER run destructive queries against production DB
 
 ---
 
+## Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+```
+수정 시:
+  기존 코드 "개선" 목적 수정 금지
+  요청과 무관한 리팩토링 금지
+  기존 스타일이 마음에 안 들어도 맞출 것
+
+내가 만든 orphan은 직접 정리:
+  내 변경으로 생긴 unused import/variable/function → 삭제
+  기존에 있던 dead code → 건드리지 말고 언급만
+
+기준: 변경된 모든 라인이 요청에 직접 연결되는가?
+```
+
+---
+
 ## Git Workflow
 
 ```
@@ -132,6 +155,17 @@ Java  : JUnit 5 + Mockito
 Node  : Jest / Vitest
 
 Scope : run only the affected test, not the full suite
+```
+
+**작업을 검증 가능한 목표로 변환할 것:**
+```
+"Fix the bug"     → 재현 테스트 작성 → 통과시키기
+"Add validation"  → 잘못된 입력 테스트 작성 → 통과시키기
+"Refactor X"      → 리팩토링 전후 테스트 동일하게 통과
+
+멀티스텝 작업 시 구현 전 plan 먼저 출력:
+  1. [step] → verify: [check]
+  2. [step] → verify: [check]
 ```
 
 ---
