@@ -86,6 +86,7 @@ NEVER hardcode secrets, .env values, API keys into source code
 NEVER push directly to main branch
 NEVER modify migration files arbitrarily
 NEVER run destructive queries against production DB
+NEVER mix incompatible dependency versions — check go.mod / build.gradle / package.json 전체 기준으로 버전 맞출 것
 ```
 
 ---
@@ -256,6 +257,12 @@ Repo structure: monorepo
 Go   : go get, go mod tidy 후 go.sum 커밋 필수
 Java : build.gradle 에 버전 명시, BOM 활용 권장
 Node : package-lock.json 커밋 필수, devDependencies 분리
+
+버전 호환성:
+  라이브러리 추가/변경 시 반드시 기존 의존성과 충돌 여부 확인
+  Go  : 같은 모듈의 indirect 의존성 버전 충돌 주의
+  Java: Spring Boot BOM 벗어나는 버전 임의 지정 금지
+  K8s 관련: client-go / k8s.io 계열은 반드시 K8s 버전과 매핑 확인
 ```
 
 ---
